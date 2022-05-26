@@ -63,7 +63,7 @@ def evaluate_tabular(table):
 if __name__=='__main__':
 
     # Flags to run SARSA and Q-learning
-    run_sarsa = False#True
+    run_sarsa = True#True
     run_q_learning = True#True
     run_dqn = False
 
