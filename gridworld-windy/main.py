@@ -86,7 +86,7 @@ if __name__=='__main__':
         # Task 2.3 - Select the proper parameters for you to find a close-to-optimal solution.
         # The total reward should be smaller or equal to -16.
         # INSERT CODE HERE
-        rews, table = tabular.q_learning(env,step_size=0.1, epsilon=0.2, gamma=1.0, num_eps=200)
+        rews, table = tabular.q_learning(env,step_size=0.5, epsilon=0.1, gamma=1.0, num_eps=150)
         
         plot_rew('Q-Learning', rews)
         plot_policy('Q-Learning', table, env)
