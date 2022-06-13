@@ -49,10 +49,8 @@ model = PPO("MlpPolicy",
             env,
             verbose=2,
             gamma=0.9,
-            clip_range=0.2,
             batch_size=128,
             learning_rate=3e-3,
-            policy_kwargs=dict(net_arch=[256, 256]),
             seed=2,
             tensorboard_log="./logs")
 #Evaluate Agent before training
@@ -62,7 +60,7 @@ model = PPO("MlpPolicy",
 
 # Train the agent
 model.learn(total_timesteps=10000, log_interval=10)
-model.save(f"{models_dir}/dqn_maze_random_5x5")
+model.save(f"{models_dir}/ppo_maze_random_5x5")
 
 #mean_reward, std_reward = evaluate_policy(model, model.get_env(), deterministic=True, n_eval_episodes=20)
 

@@ -27,7 +27,7 @@ if not os.path.exists(models_dir):
 
 #env = gym.make('maze-random-5x5-v0')
 #env.reset()
-'''
+
 model = DQN("MlpPolicy",
             env,
             verbose=2,
@@ -61,6 +61,7 @@ model = PPO("MlpPolicy",
             policy_kwargs=dict(net_arch=[256, 256]),
             seed=2,
             tensorboard_log="./logs")
+            '''
 #Evaluate Agent before training
 #mean_reward, std_reward = evaluate_policy(model, model.get_env(), deterministic=True, n_eval_episodes=2)
 
