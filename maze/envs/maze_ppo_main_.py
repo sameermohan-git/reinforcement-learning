@@ -2,7 +2,7 @@
 import os
 from time import time
 import gym
-from stable_baselines3 import DQN
+from stable_baselines3 import DQN, PPO
 from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.monitor import Monitor
@@ -48,16 +48,10 @@ model = DQN("MlpPolicy",
 model = PPO("MlpPolicy",
             env,
             verbose=2,
-            train_freq=16,
-            gradient_steps=8,
             gamma=0.9,
-            exploration_fraction=0.2,
-            exploration_final_eps=0.07,
-            target_update_interval=600,
-            learning_starts=1000,
-            buffer_size=10000,
+            clip_range=0.2,
             batch_size=128,
-            learning_rate=2e-3,
+            learning_rate=3e-3,
             policy_kwargs=dict(net_arch=[256, 256]),
             seed=2,
             tensorboard_log="./logs")
@@ -88,7 +82,7 @@ for step in range(n_steps):
     obs, reward, done, info = env.step(action)
     print('obs=', obs, 'reward=', reward, 'done=', done)
     print('info=', info)
-    env.render(mode='human')
+    env.render(mode='rgb_array')
     if done:
      print("Goal reached!", "reward=", reward)
      break

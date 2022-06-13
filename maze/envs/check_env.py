@@ -1,5 +1,5 @@
 import gym
-from stable_baselines3 import PPO
+from stable_baselines3 import PPO, DQN
 import os
 from maze_env import MazeEnvRandom5x5
 from stable_baselines3.common.env_checker import check_env
