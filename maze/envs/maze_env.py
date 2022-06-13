@@ -26,7 +26,7 @@ class MazeEnv(gym.Env):
         elif maze_size:
             if mode == "plus":
                 has_loops = True
-                num_portals = int(round(min(maze_size)/3))
+                num_portals = int(round(min(maze_size) / 3))
             else:
                 has_loops = False
                 num_portals = 0
@@ -41,11 +41,11 @@ class MazeEnv(gym.Env):
         self.maze_size = self.maze_view.maze_size
 
         # forward or backward in each dimension
-        self.action_space = spaces.Discrete(2*len(self.maze_size))
-        print('self.action_space:',self.action_space)
+        self.action_space = spaces.Discrete(2 * len(self.maze_size))
+        print('self.action_space:', self.action_space)
         # observation is the x, y coordinate of the grid
         low = np.zeros(len(self.maze_size), dtype=int)
-        high =  np.array(self.maze_size, dtype=int) - np.ones(len(self.maze_size), dtype=int)
+        high = np.array(self.maze_size, dtype=int) - np.ones(len(self.maze_size), dtype=int)
         self.observation_space = spaces.Box(low, high, dtype=np.int64)
         # initial condition
         self.state = None
@@ -79,7 +79,7 @@ class MazeEnv(gym.Env):
             reward = 1
             done = True
         else:
-            reward = -0.1/(self.maze_size[0]*self.maze_size[1])
+            reward = -0.1 / (self.maze_size[0] * self.maze_size[1])
             done = False
 
         self.state = self.maze_view.robot
@@ -115,6 +115,12 @@ class MazeEnvRandom5x5(MazeEnv):
 
     def __init__(self, enable_render=True):
         super(MazeEnvRandom5x5, self).__init__(maze_size=(5, 5), enable_render=enable_render)
+
+
+class MazeEnvRandom8x8(MazeEnv):
+
+    def __init__(self, enable_render=True):
+        super(MazeEnvRandom8x8, self).__init__(maze_size=(8, 8), enable_render=enable_render)
 
 
 class MazeEnvSample10x10(MazeEnv):
